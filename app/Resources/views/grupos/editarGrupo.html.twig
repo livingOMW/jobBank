@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editar curso{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><a href="{{ path('listar_grupos') }}" class="bc-item">Grupos</a></li>
+		<li><span class="bc-item">Editar</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+
+<h2>Editar al grupo:</h2>
+
+<hr>
+
+<div class="container">
+
+{{ form_start(form) }}
+		<div class="col-md" style="margin-bottom:10px;">
+			Nombre del grupo:{{ form_widget(form.name) }}
+                       {{ form_errors(form.name) }}
+		</div>
+  	<div class="col-md-2 col-6" style="margin-bottom:10px;">
+  	{{ form_widget(form.Crear,  {'label': 'Guardar'})  }}
+  	</div>
+
+{{ form_end(form) }}
+
+</div>
+
+
+{% endblock %}

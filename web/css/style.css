@@ -1,0 +1,129 @@
+.container {
+
+}
+.navbar-toggler,.navbar-toggler-icon{
+  color: white !important;
+}
+.navbar-brand{
+  color: white !important;
+}
+.form-signin {
+    margin: 0 auto;
+    max-width: 300px;
+}
+body{
+      background-color: #F5F5F5;
+}
+.alumnos{
+  margin-left: 0px;
+}
+.aprobar{
+  margin-left: 15px;
+}
+.nav-link{
+  color: #cbbde2 !important;
+}
+.help-block{
+  color: red;
+}
+.nav-link:hover{
+  color: white !important;
+}
+.grupos{
+  margin-top: 15px;
+  margin-left: 15px;
+}
+th,td{
+  color: white;
+}
+.cuerpo{
+
+	padding: 20px;
+	background-color: #FCFCFC;
+}
+.profesor, .administrador{
+  margin: 0px;
+}
+
+.breadcrumbs{
+    list-style: none;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.breadcrumbs > li:not(:last-child)::after{
+    content: ' > ';
+    margin: 0px 5px;
+}
+
+ul.breadcrumbs{
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+	.cuerpo{
+		margin: 5px;
+		padding: 0;
+		background-color: #F5F5F5;
+	}
+  h1{
+    font-size: 1.5em;
+  }
+  h2{
+    font-size: 1.5em;
+  }
+
+  .breadcrumbs{
+      display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+    /* change media query width to suit needs */
+    /* force table markup to behave like divs */
+    .jrt table,
+    .jrt thead,
+    .jrt tbody,
+    .jrt th,
+    .jrt td,
+    .jrt tr {
+        display: block;
+        text-align: left;
+    }
+    /* hide table headers (but not display: none;, for accessibility) */
+    .jrt thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .jrt tr {
+        border: 1px solid #ccc;
+		margin-bottom: 10px;
+    }
+    .jrt td {
+        /* behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        font-weight: normal;
+		height: 60px;
+    }
+    .jrt td:before {
+        /* becomes the table header */
+        position: absolute;
+        /* top/left values mimic padding */
+        top: 8px;
+        /* mimic padding top */
+        left: 6px;
+        /* mimic padding left */
+        width: 45%;
+        text-align: left!important;
+        padding-right: 0;
+        font-weight: bold;
+        white-space: pre;
+        overflow: hidden;
+    }
+}

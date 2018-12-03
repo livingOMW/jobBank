@@ -1,0 +1,5 @@
+Se cambio el twig de lista > listaAlumnos.html.twig. En el se añadio el id AluTable a la tabla y se coloco el thead y el tbody (son necesarios para el jquery).
+
+En el twig base.html.twig se añadieron los scripts de la linea 21 y 22, se requieren ambos para que el diseño responsive funcione.
+
+El css se modifico, se añadieron las lineas del @media de max-width: 1200px.

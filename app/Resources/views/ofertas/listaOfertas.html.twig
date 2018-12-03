@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block migas %}
+    <ul class="breadcrumbs hidden-xs">
+        <li><a href="inicio" class="bc-item bc-item-home">Inicio</a></li>
+        <li><span class="bc-item">Ofertas</span></li>
+        <li><span class="bc-item">Listar</span></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <div class="text-left container">
+        <h2>Últimos anuncios</h2>
+        {% if ofertas is empty %}
+            <h2>No hay ofertas publicadas.</h2>
+        {% endif %}
+        {% for oferta in ofertas %}
+            <article class="jumbotron">
+                {# <ul class="nav justify-content-end"><a class="nav-link" href="#">editar</a></ul> #}
+
+                <h2><a href="{{path('ofertas', {'id': oferta.id}) }}">{{ oferta.titulo }}</a></h2>
+                <br>
+                {% if oferta.texto|raw|length > 200 %}
+                    {{ oferta.texto | striptags|slice(0,200)|raw }}...
+                    <a href="{{path('ofertas', {'id': oferta.id}) }}">leer más.</a>
+                {% else %}
+                    {{ oferta.texto|raw }}
+                {% endif %}
+                <br><br>  Fecha de publicación: {{ oferta.fecha|date('d/m/Y') }}
+                {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR')) %}
+                    <div class="">
+                        <a  href="{{path('eliminar_oferta',{ 'getid' : oferta.id })}}">Eliminar oferta</a>
+                    </div>
+
+                {% endif %}
+            </article>
+
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

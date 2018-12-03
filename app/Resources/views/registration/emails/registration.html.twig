@@ -1,0 +1,15 @@
+{# app/Resources/views/Emails/registration.html.twig #}
+
+<h1>¡Lo has logrado! ¡Te has registrado!</h1>
+
+<h2>Hola, ahora hace falta confirmar tu cuenta.</h2><br>
+
+{# example, assuming you have a route named "login" #}
+<h2>Para confirmar pulse siguiente enlance:
+   <a href="{{ url('confirmar',{'codigo' : codigo }) }}">Confirmar su cuenta</a>.</h2><br>
+
+<hr>
+<p style="color:#363636;font-size:9px;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+(*)Aviso: Esta dirección de correo está destinada únicamente al envío de información
+sobre la bolsa de trabajo de IES José Planes, por favor no conteste a este correo.</p>
+{# Makes an absolute URL to the /images/logo.png file #}

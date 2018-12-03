@@ -1,0 +1,5 @@
+//Actualziar la base de datos
+php bin/console doctrine:schema:update --force
+//Limpiar cache
+ php bin/console cache:clear --no-warmup --env=prod
+  php bin/console cache:clear --no-warmup --env=dev

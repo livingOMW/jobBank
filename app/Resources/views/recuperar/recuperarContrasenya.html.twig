@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nueva contraseña{% endblock %}
+
+{% block migas %}
+    <ul class="breadcrumbs hidden-xs">
+        <li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+        <li><span class="bc-item">Recuperar contraseña</span></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+{{ form_start(form)}}
+Introduzca su nueva contraseña:
+{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control col-md-4 col-10', 'placeholder':'Contraseña nueva'}}) }}
+<br>
+{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control col-md-4 col-10', 'placeholder':'Confirmar contraseña'}}) }}
+<br>
+{{ form_widget(form.registrar,  {'attr': {'class': 'col-sm-2 btn btn-success'}}) }}
+{{ form_widget(form.apellido1, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.apellido2, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.nombre, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.dni, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.nre, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.curso, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.anyoPromocion, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.email, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.telefono, {'attr': {'class': 'd-none'}}) }}
+{{ form_widget(form.exp, {'attr': {'class': 'd-none'}}) }}
+  {{ form_end(form, {'render_rest': true}) }}
+{% endblock %}

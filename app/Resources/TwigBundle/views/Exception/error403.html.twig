@@ -1,0 +1,9 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accesso denegado.</h1>
+
+    <p>Lo sentimos, su cuenta no tiene permiso para acceder a esta zona.</p>
+	<p><a href="{{ path('homepage') }}">Volver al inicio</a>.</p>
+{% endblock %}

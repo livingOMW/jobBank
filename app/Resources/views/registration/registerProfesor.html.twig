@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title %}Registro profesor{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Registrar</span></li>
+		<li><span class="bc-item">Alta profesor</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+<h2>Registro de profesor:</h2>
+
+<hr>
+
+<div class="container">
+
+{{ form_start(form) }}
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Nombre*:{{ form_widget(form.nombre) }}
+						 {{ form_errors(form.nombre) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Primer apellido*:{{ form_widget(form.apellido1) }}
+											{{ form_errors(form.apellido1) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Segundo apellido:{{ form_widget(form.apellido2) }}
+												{{ form_errors(form.apellido2) }}
+		</div>
+
+	</div>
+
+	<hr class="sepReg">
+
+	<div class="row">
+		<div class="col-md" style="margin-bottom:10px;">
+			Correo*:{{ form_widget(form.email) }}
+							{{ form_errors(form.email) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Contraseña*:{{ form_widget(form.plainPassword.first) }}
+									{{ form_errors(form.plainPassword.first) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Repetir contraseña*:{{ form_widget(form.plainPassword.second) }}
+													{{ form_errors(form.plainPassword.second) }}
+		</div>
+	</div>
+
+	<hr class="sepReg">
+
+		<div class="col-12" style="margin-bottom:10px;">
+		* Campos obligatorios.
+		</div>
+	<hr class="sepReg">
+		<div class="col-md-2" style="margin-bottom:10px;">
+		{{ form_widget(form.registrar) }}
+		</div>
+
+{{ form_end(form) }}
+
+</div>
+{% endblock %}

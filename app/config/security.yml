@@ -1,0 +1,77 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: 'argon2i'
+        AppBundle\Entity\Alumno:
+            algorithm: 'argon2i'
+        AppBundle\Entity\Profesor:
+            algorithm: 'argon2i'
+        AppBundle\Entity\Administrador:
+            algorithm: 'argon2i'
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        chain_provider:
+            chain:
+                providers: [ in_memory, db_provider, db_provider2, db_provider3 ]
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: $argon2i$v=19$m=1024,t=2,p=2$YVdwUU1zVkJRV0hIdWxRQg$0T6mQD3mu7IDxKqUR6PdoIY/B26PZF5kTubITSXMuCo
+                        roles: 'ROLE_ADMIN'
+        db_provider:
+            entity:
+                class: AppBundle:Alumno
+                property: email
+        db_provider2:
+            entity:
+                class: AppBundle:Profesor
+                property: email
+        db_provider3:
+            entity:
+                class: AppBundle:Administrador
+                property: nombre
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            provider: chain_provider
+            form_login:
+                login_path: login
+                check_path: login
+                # despues de logearse la ruta que carga
+                default_target_path: /ofertas
+            logout:
+              path: /logout
+              # despues de logout la ruta que carga
+              target: /login
+            anonymous: ~
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
+    access_control:
+        - { path: ^/registration-form-submission$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/confirmar, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/desactivar, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/recuperarContrasenyaEmail, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/recuperarContrasenya, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(login|register)$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(registerProfesor|registerAdmin|grupos)$, role: ROLE_ADMIN }
+        - { path: ^/(listar|enviar|aprobar|editar_profesor)$, role: [ROLE_ADMIN, ROLE_PROFESOR] }
+        - { path: ^/inicio, role: [ROLE_ADMIN, ROLE_PROFESOR, ROLE_USER] }
+        - { path: ^/editar_alumno, role: ROLE_USER }
+        - { path: ^/ofertas, role: [ROLE_ADMIN, ROLE_PROFESOR, ROLE_USER] }
+        - { path: ^/, role: ROLE_ADMIN }

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block title %}Listar Administradores{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Administradores</span></li>
+		<li><span class="bc-item">Lista</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+<h2>Lista de administradores</h2>
+
+<div class="row administrador">
+
+{# total items count #}
+<div class="count">
+    <h4>Total de administradores: {{ pagination.getTotalItemCount }}</h4>
+</div>
+
+<hr>
+	<table class="table table-hover table-bordered" id="AluTable">
+	<thead>
+	<tr style="background-color: #563d7c">
+	{# sorting of properties based on query components #}
+		<th>Nombre</th>
+		<th class="tabOculta">Correo</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	{# table body #}
+	{% for admin in pagination %}
+	<tr style="background-color: #563d7c">
+		<td>{{ admin.nombre|title }}</td>
+		<td class="tabOculta">{{ admin.email }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+
+	{# display navigation #}
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+
+
+
+</div>
+{% block javascript %}
+
+ <script src="{{asset('js/TableResponsive/js/jquery.responsive-tables.min.js')}}"></script>
+ <script src="{{asset('js/TableResponsive/js/app.js')}}"></script>
+
+{% endblock %}
+{% endblock %}

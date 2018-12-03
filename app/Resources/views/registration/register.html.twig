@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block title %}Registro alumno{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Registrarse</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+<h2>Registro de alumno:</h2>
+
+<hr>
+
+<div class="container">
+
+{{ form_start(form) }}
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Nombre*:{{ form_widget(form.nombre) }}
+             {{ form_errors(form.nombre) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Primer apellido*:{{ form_widget(form.apellido1) }}
+                      {{ form_errors(form.apellido1) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Segundo apellido:{{ form_widget(form.apellido2) }}
+                       {{ form_errors(form.apellido2) }}
+		</div>
+
+	</div>
+
+	<hr class="sepReg">
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Correo electrónico*:{{ form_widget(form.email) }}
+             							{{ form_errors(form.email) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			DNI/NIE*:{{ form_widget(form.dni) }}
+              {{ form_errors(form.dni) }}
+		</div>
+
+	</div>
+
+	<hr class="sepReg">
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Contraseña*:{{ form_widget(form.plainPassword.first) }}
+                 {{ form_errors(form.plainPassword.first) }}
+		</div>
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Repetir contraseña*:{{ form_widget(form.plainPassword.second) }}
+                         {{ form_errors(form.plainPassword.second) }}
+		</div>
+
+	</div>
+
+	<hr class="sepReg">
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Curso*:{{ form_widget(form.curso) }}
+						 {{ form_errors(form.curso) }}
+		</div>
+		<div class="col-md" style="margin-bottom:10px;">
+			NRE*:{{ form_widget(form.nre) }}
+          {{ form_errors(form.nre) }}
+		</div>
+		<div class="col-md" style="margin-bottom:10px;">
+			Número de expediente:{{ form_widget(form.exp) }}
+                           {{ form_errors(form.exp) }}
+		</div>
+
+	</div>
+
+	<hr class="sepReg">
+
+	<div class="row">
+
+		<div class="col-md" style="margin-bottom:10px;">
+			Teléfono:{{ form_widget(form.telefono) }}
+               {{ form_errors(form.telefono) }}
+		</div>
+		<div class="col-md" style="margin-bottom:10px;">
+			Año de promoción*:{{ form_widget(form.anyoPromocion) }}
+                       	{{ form_errors(form.anyoPromocion) }}
+		</div>
+
+	</div>
+  <hr>
+  <div class="col-12" style="margin-bottom:10px;">
+  * Campos obligatorios.
+  </div>
+  <hr>
+	<div class="col-md-2 col-6" style="margin-bottom:10px;">
+	{{ form_widget(form.registrar)  }}
+	</div>
+
+{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

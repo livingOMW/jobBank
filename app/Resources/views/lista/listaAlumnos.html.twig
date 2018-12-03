@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block title %}Listar alumnos{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Listar alumnos</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+<h2>Lista de alumnos</h2>
+
+<div class="row alumnos">
+
+{# total items count #}
+<div class="count">
+    <h4>Total de alumnos: {{ pagination.getTotalItemCount }}</h4>
+</div>
+
+<hr>
+	<table class="table table-hover table-bordered" id="AluTable">
+	<thead>
+	<tr style="background-color: #563d7c">
+	{# sorting of properties based on query components #}
+		<th>Nombre</th>
+		<th>Primer apellido</th>
+		<th>Segundo apellido</th>
+		<th class="tabOculta">Correo</th>
+		<th>Curso</th>
+		<th class="tabOculta">DNI</th>
+		<th class="tabOculta">NRE</th>
+		<th class="tabOculta">Teléfono</th>
+		<th class="tabOculta">Año de promoción</th>
+    {% if is_granted('ROLE_ADMIN') %}
+		<th></th>
+    {% endif %}
+	</tr>
+	</thead>
+
+	<tbody>
+	{# table body #}
+	{% for alumno in pagination %}
+	<tr style="background-color: #563d7c">
+		<td>{{ alumno.nombre|title }}</td>
+		<td>{{ alumno.apellido1|title }}</td>
+		<td>{{ alumno.apellido2|title }}</td>
+		<td class="tabOculta">{{ alumno.email }}</td>
+		<td>{{ alumno.curso.name }}</td>
+		<td class="tabOculta">{{ alumno.dni }}</td>
+		<td class="tabOculta">{{ alumno.nre }}</td>
+		<td class="tabOculta">{{ alumno.telefono }}</td>
+		<td class="tabOculta">{{ alumno.anyoPromocion }}</td>
+    {% if is_granted('ROLE_ADMIN') %}
+    <td><a class="nav-link" href="{{ url('editar_alumnoProf',{'getid' : alumno.id }) }}">Editar</a></td>
+    {% endif %}
+	</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+
+	{# display navigation #}
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+
+
+
+</div>
+{% block javascript %}
+
+ <script src="{{asset('js/TableResponsive/js/jquery.responsive-tables.min.js')}}"></script>
+ <script src="{{asset('js/TableResponsive/js/app.js')}}"></script>
+
+{% endblock %}
+
+{% endblock %}

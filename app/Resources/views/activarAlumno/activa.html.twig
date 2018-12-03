@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block migas %}
+  <ul class="breadcrumbs hidden-xs">
+    <li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+    <li><span class="bc-item">Aprobar</span></li>
+  </ul>
+
+{% endblock %}
+
+{% block title %}Activación alumnos{% endblock %}
+{% block body %}
+
+  {% if not alumnos %}
+  <h2>¡No hay alumnos pendientes de activar!</h2>
+  {% else %}
+  <h2 class="aprobar">Activar a los alumnos registrados:</h2>
+  {{ form(form) }}
+  {% endif %}
+
+
+{% endblock %}

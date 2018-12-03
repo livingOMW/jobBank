@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Recuperar contraseña{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Recuperar contraseña</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+<h1 class="flow-h1">Vamos a buscar tu cuenta</h1>
+
+{{ form(form) }}
+
+{% endblock %}

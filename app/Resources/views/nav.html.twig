@@ -1,0 +1,92 @@
+
+<nav class="navbar navbar-dark navbar-expand-md"  style="background-color: #563d7c">
+  <a class="navbar-brand" href="{{path('homepage')}}"> Bolsa de trabajo de IES José Planes</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav ml-auto">
+
+      {# Lo muestra a los usuarios solo logeados#}
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('homepage')}}">Inicio</a>
+      </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('login')}}">Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('register')}}">Registrarse</a>
+        </li>
+      {% endif %}
+
+      {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR')) %}
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Ofertas</a>
+          <div class="dropdown-menu">
+              <a class="dropdown-item" href="{{path('enviar')}}">Enviar</a>
+              <a class="dropdown-item" href="{{path('ofertas_lista')}}">Listar</a>
+          </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Alumnos</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{{path('aprobar')}}">Activar</a>
+          <a class="dropdown-item" href="{{path('listar')}}">Listar</a>
+        </div>
+      </li>
+      {% endif %}
+
+      <!--Admin-->
+      {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item ">
+          <a class="nav-link" href="{{path('listar_grupos')}}">Grupos</a>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Profesores</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{path('registerProfesor')}}">Alta profesor</a>
+            <a class="dropdown-item" href="{{path('listarProf')}}">Listar profesores</a>
+            <a class="dropdown-item" href="{{path('registerAdmin')}}">Alta administrador</a>
+            <a class="dropdown-item" href="{{path('listarAdmin')}}">Listar administradores</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+  			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Perfil de {{ app.user.nombre|title }}</a>
+  				<div class="dropdown-menu">
+  					<a class="dropdown-item" href="{{path('editar_admin')}}">Editar</a>
+  					<a class="dropdown-item" href="{{path('logout')}}">Salir</a>
+  				</div>
+  			</li>
+      {% endif %}
+
+      <!--Profesor-->
+      {% if is_granted('ROLE_PROFESOR') %}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Perfil de {{ app.user.nombre|title }}</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{path('editar_profesor')}}">Editar</a>
+            <a class="dropdown-item" href="{{path('logout')}}">Salir</a>
+          </div>
+        </li>
+      {% endif %}
+
+    <!--Alumno-->
+    {% if (app.user and not is_granted('ROLE_ADMIN') and not is_granted('ROLE_PROFESOR'))  %}
+        <li class="nav-item ">
+            <a class="nav-link" href="{{path('ofertas_lista')}}">Ofertas</a>
+        </li>
+      <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Perfil de {{ app.user.nombre|title }}</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="{{path('editar_alumno')}}">Editar</a>
+					<a class="dropdown-item" href="{{path('logout')}}">Salir</a>
+				</div>
+			</li>
+      {% endif %}
+
+
+    </ul>
+  </div>
+</nav>

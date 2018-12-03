@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Crear grupo{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><a href="{{ path('listar_grupos') }}" class="bc-item">Grupos</a></li>
+		<li><span class="bc-item">Crear grupo</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+{{form(form)}}
+
+{% endblock %}

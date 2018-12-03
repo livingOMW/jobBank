@@ -1,0 +1,18 @@
+{# app/Resources/views/email_send/email.html.twig #}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Una nueva oferta de trabajo!</h1>
+    {{mensaje|raw}}
+    <hr>
+    <p style="color:#363636;font-size:9px;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+      (*)Aviso: Esta dirección de correo está destinada únicamente al envío de información
+      sobre la bolsa de trabajo de IES José Planes, por favor no conteste a este correo.<br>
+  Para dejar de recibir las ofertas de trabajo pulse siguiente enlace:
+  <a href="{{ url('desactivar',{'codigo' : codigo }) }}">Desuscribirse</a></p>
+  </body>
+</html>

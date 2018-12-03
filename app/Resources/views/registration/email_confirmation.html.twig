@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Usuario activado{% endblock %}
+
+{% block migas %}
+    <ul class="breadcrumbs hidden-xs">
+        <li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+        <li><span class="bc-item">Activar usuario</span></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+¡El usuario <strong>{{alumno.Nombre|title}}
+                    {{alumno.Apellido1|title}}
+                    {{alumno.Apellido2|title}} </strong>
+  con email <strong>{{alumno.email}}</strong>  se ha activado con éxito!
+{% endblock %}

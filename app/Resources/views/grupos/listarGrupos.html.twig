@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}Listar grupos{% endblock %}
+
+{% block migas %}
+	<ul class="breadcrumbs hidden-xs">
+		<li><a href="{{ path('homepage') }}" class="bc-item bc-item-home">Inicio</a></li>
+		<li><span class="bc-item">Grupos</span></li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+
+<h2>Lista de grupos:</h2>
+
+<hr>
+
+<div class="table-responsive">
+
+<table class="table table-hover table-bordered">
+
+{% for grupo in grupos %}
+	<tr style="background-color: #563d7c">
+		<td style="color: white">Nombre del grupo: <strong>{{ grupo.name }}</strong></td>
+		<td><a class="nav-link" href="{{path('eliminar_grupo',{ 'getid' : grupo.id })}}">Eliminar</a></td>
+		<td><a class="nav-link" href="{{path('editar_grupo',{ 'getid' : grupo.id })}}">Editar</a></td>
+	</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<hr>
+
+<a href="{{path('crear_grupo')}}" ><button class="btn btn-success">Crear grupo</button></a>
+{% endblock %}
